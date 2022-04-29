@@ -67,7 +67,6 @@ let total = 0
 function buy(id) {
   // 1. Loop for to the array products to get the item to add to cart
   for (let i = 0; i < products.length; i++) {
-    products[i].id
     // 2. Add found product to the cartList array
     if (products[i].id == id) cartList.push(products[i])
   }
@@ -80,7 +79,7 @@ function cleanCart() {
 }
 
 // Exercise 3
-function calculateTotal() {
+function calculateTotal(cartList) {
   // Calculate total price of the cart using the "cartList" array
   let totalPrice = 0
   for (let i = 0; i < cartList.length; i++) {
@@ -91,24 +90,54 @@ function calculateTotal() {
 
 // Exercise 4
 function generateCart() {
-  // Using the "cartlist" array that contains all the items in the shopping cart,
-  for (let i = 0; i < cartList.length; i++) {
-    const idProductPrev = cartList[i].id;
-    let cartQuantity = { quantity: 0 }
-    for (let j = 1; j < cartList.length; j++) {
-      if (idProductPrev == cartList[j].id) {
+  // recogo los ids de products
+  // const idProduct = []
+  // for (let i = 0; i < products.length; i++) {
+  //   idProduct.push(products[i].id)
+  // }
 
-          cartQuantity = {
-            quantity,
-            ...cartList[j]
-          }
-          cartQuantity.quantity += 1
-          cart.push(cartQuantity)
+  // recorrido por el array de objetos cartList
+  for (let i = 0; i < products.length; i++) {
+    // filter
+    let count = 0
+
+    for (let j = 0; j < cartList.length; j++) {
+      if (products[i].id == cartList[j].id) {
+        count = count + 1
+        console.table('cartList', cartList[i].id,'count', count)
       }
     }
+
+    // TODO: tengo la cantidad y el id
+    const quantity = { quantity: count}
+    const newCartItemQuantity = {
+      ...quantity,
+      ...products[i],
+    }
+    if (count > 0) cart.push(newCartItemQuantity)
   }
+  // Using the "cartlist" array that contains all the items in the shopping cart,
   // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+  return '✌'
 }
+
+// testing cart
+
+buy(4)
+buy(4)
+buy(4)
+buy(4)
+buy(4)
+buy(4)
+buy(4)
+buy(4) // 8 items equals
+buy(7)
+buy(7) // 2 items equals
+
+generateCart()
+
+console.table('cartList', cartList)
+console.table('cart', cart)
 
 // Exercise 5
 function applyPromotionsCart() {
