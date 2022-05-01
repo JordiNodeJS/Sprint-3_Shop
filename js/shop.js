@@ -1,4 +1,5 @@
 const $count_product = document.querySelector('#count_product')
+$botoncito = document.querySelector('.btn.btn-outline-dark.flex-center')
 // If you have time, you can move this variable "products" to a json or js file and load the data in this js. It will look more professional
 const products = [
   {
@@ -165,6 +166,7 @@ function applyPromotionsCart() {
 
 // Exercise 7
 function addToCart(id) {
+
   // Refactor previous code in order to simplify it
   // 1. Loop for to the array products to get the item to add to cart
   // 2. Add found product to the cart array or update its quantity in case it has been added previously.
@@ -231,11 +233,69 @@ function removeFromCart(id) {
 // testing removeFromCart
 
 // removeFromCart(1)
-
+function totalShop() {
+  let subtotalPromocionOli, subtotalPromocionPastis
+  for (let i = 0; i < cart.length; i++) {
+    // PROMOCIÓN: Si l'usuari compra 3 o més ampolles d'oli, el preu del producte descendeix a 10 euros.
+    if (cart[i].id == 1 && cart[i].quantity >= 3) {
+      console.log(cart[i].price, cart[i].quantity)
+      subtotalPromocionOli = cart[i].quantity * 10
+      console.log('subtotalPromocionOli', subtotalPromocionOli)
+      total += subtotalPromocionOli
+    } else if (cart[i].id == 3 && cart[i].quantity >= 10) {
+      // PROMOCiON: En comprar-se 10 o més mescles per a fer pastís, el seu preu es rebaixa a 2/3.
+      console.log('funciona')
+      console.log(cart[i].price, cart[i].quantity)
+      subtotalPromocionPastis = cart[i].quantity * cart[i].price * (2 / 3)
+      console.log('subtotalPromocionPastis', subtotalPromocionPastis)
+      total += subtotalPromocionPastis
+    } else total += cart[i].quantity * cart[i].price
+  }
+}
 
 // Exercise 9
-function printCart() {
+$botoncito = document.querySelector('.btn.btn-outline-dark.flex-center')
+$botoncito.addEventListener('click', printCart)
+function printCart(e) {
   // Fill the shopping cart modal manipulating the shopping cart dom
+  totalShop()
+  let trs = ''
+  for (let i = 0; i < cart.length; i++) {
+    trs += `
+    <tr>
+      <td> ${cart[i].name}</td>
+      <td>${cart[i].price}</td>
+      <td>${cart[i].quantity}</td>
+    </tr>`
+  }
+  const $cartModalh3 = document.querySelector('#cartModal h3')
+  $div = document.createElement('div')
+  $div.innerHTML += `
+    <table  class="table">
+    <thead>
+    <tr>
+    <th scope="col">
+      Name
+    </th>
+    <th scope="col">
+      Price
+    </th>
+    <th scope="col">
+      Quantity
+    </th>
+    </tr>
+    </thead>
+    <tbody> ${trs}
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td colspan="2">${total} €</td>
+        </tr>
+    </tbody></table>
+  `
+  $cartModalh3.insertAdjacentElement('afterend', $div)
+  $cartModalh3.remove()
+  $botoncito.removeEventListener(e.type, printCart)
 }
 
 function open_modal() {

@@ -92,3 +92,11 @@ console.log(cart)
 // const otherCar = ['Toyota']
 // const cars2 = [cars, ...otherCar]
 // console.log(cars);
+
+const names = ['Joe', 'John', 'David', 'Smith', 'James']
+console.log(names);
+
+for (let i = 0; i < names.length; i++) {
+  if (names[i] == 'David') names.splice(i, 1)
+}
+console.log(names);
