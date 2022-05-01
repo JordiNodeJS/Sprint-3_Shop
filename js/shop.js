@@ -60,7 +60,7 @@ const products = [
 const cartList = []
 
 // Improved version of cartList. Cart is an array of products (objects), but each one has a quantity field to define its quantity, so these products are not repeated.
-const cart = []
+let cart = []
 
 let total = 0
 
@@ -89,17 +89,14 @@ function cleanCart() {
 
 // testing cart
 
-buy(1)
-buy(1)
-buy(1)
 
 // generateCart(cart)
 
 // calculateTotal(cartList)
-applyPromotionsCart()
+// applyPromotionsCart()
 
-console.table('cartList', cartList)
-console.table('cart', cart)
+// console.table('cartList', cartList)
+// console.table('cart', cart)
 
 // Exercise 3
 function calculateTotal() {
@@ -172,7 +169,46 @@ function addToCart(id) {
   // Refactor previous code in order to simplify it
   // 1. Loop for to the array products to get the item to add to cart
   // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+  for (let i = 0; i < products.length; i++) {
+    // buscando el producto en el inventario
+    if (id == products[i].id ) {//compruebo que cart está vacío y creo el producto por primera vez con su quantity a 1
+        if (cart.length == 0 ) {
+          const productToCart = { ...products[i] }
+          productToCart.quantity = 1
+          cart.push(productToCart)
+        } else
+         if (cart.length >= 0) // si en cart hay algún producto
+          {
+
+            let exit = false
+              for (let i = 0; i < cart.length; i++) {  // miro si existe ese producto y le sumo uno a la quantity
+                if (id == cart[i].id) {
+                  exit = true
+                  cart[i].quantity += 1
+                }
+              }
+              if (!exit){   // si el producto no está en el cart lo añado por primera vez y con la cantidad de 1
+                  const productToCart = {...products[i]}
+                  productToCart.quantity = 1
+                  cart.push(productToCart)
+              }
+          }
+
+    }
+  }
 }
+// testing aadToCart
+addToCart(2)
+addToCart(2)
+addToCart(2)
+addToCart(2)
+addToCart(3)
+addToCart(3)
+addToCart(1)
+addToCart(1)
+addToCart(1)
+addToCart(1)
+console.table('cart', cart)
 
 // Exercise 8
 function removeFromCart(id) {
@@ -188,12 +224,31 @@ function printCart() {
 function open_modal() {
   console.log('Open Modal')
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
   'use strict'
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation')
+  var forms = document.querySelectorAll('.needs-validation')
 
   // Loop over them and prevent submission
   Array.prototype.slice.call(forms)
