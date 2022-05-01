@@ -77,32 +77,36 @@ function buy(id) {
 function cleanCart() {
   cartList.length = 0
   cart.length = 0
+  total =  0
 
   console.log(cartList, cart);
+  return '🧽'
 }
 
 // testing cart
 
-buy(7);buy(7);buy(7);buy(7);buy(7);buy(7);buy(7);
+buy(1);buy(1);buy(1);
 
 // generateCart(cart)
 
-calculateTotal(cartList)
+// calculateTotal(cartList)
+applyPromotionsCart()
 
 console.table('cartList', cartList)
 console.table('cart', cart)
 
 // Exercise 3
-function calculateTotal(cartList) {
+function calculateTotal() {
   // Calculate total price of the cart using the "cartList" array
   for (let i = 0; i < cartList.length; i++) {
     total += cartList[i].price
   }
   console.log('total:', total);
+  return '💵'
 }
 
 // Exercise 4
-function generateCart(cart) {
+function generateCart() {
   for (let i = 0; i < products.length; i++) {
     let count = 0
 
@@ -122,18 +126,19 @@ function generateCart(cart) {
   }
   // Using the "cartlist" array that contains all the items in the shopping cart,
   // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
-  return cart
+  return '🛒'
 }
 
 
 
 // Exercise 5
-function applyPromotionsCart(cart) {
+function applyPromotionsCart() {
   // Apply promotions to each item in the array "cart"
   // En aquest exercici has de completar la funció applyPromotionsCart(),
   //  la qual rep el array cart, i calcula les promocions del carret.
   // productos en promodicón ids: 1, 3
-  let total = 0
+  generateCart()
+
   let subtotalPromocionOli, subtotalPromocionPastis
   for (let i = 0; i < cart.length; i++) {
     // PROMOCIÓN: Si l'usuari compra 3 o més ampolles d'oli, el preu del producte descendeix a 10 euros.
@@ -153,10 +158,9 @@ function applyPromotionsCart(cart) {
       total += subtotalPromocionPastis
     }
   }
-  return total
+  return '🤑'
 }
 
-console.log(applyPromotionsCart(cart));
 
 // ** Nivell II **
 
