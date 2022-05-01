@@ -76,16 +76,29 @@ function buy(id) {
 // Exercise 2
 function cleanCart() {
   cartList.length = 0
+  cart.length = 0
+
+  console.log(cartList, cart);
 }
+
+// testing cart
+
+buy(7);buy(7);buy(7);buy(7);buy(7);buy(7);buy(7);
+
+// generateCart(cart)
+
+calculateTotal(cartList)
+
+console.table('cartList', cartList)
+console.table('cart', cart)
 
 // Exercise 3
 function calculateTotal(cartList) {
   // Calculate total price of the cart using the "cartList" array
-  let totalPrice = 0
   for (let i = 0; i < cartList.length; i++) {
-    totalPrice += cartList[i].price
+    total += cartList[i].price
   }
-  return totalPrice
+  console.log('total:', total);
 }
 
 // Exercise 4
@@ -96,7 +109,7 @@ function generateCart(cart) {
     for (let j = 0; j < cartList.length; j++) {
       if (products[i].id == cartList[j].id) {
         count = count + 1
-        console.table('cartList', cartList[i].id, 'count', count)
+        console.table('cartList', cartList[j].id, 'count', count)
       }
     }
 
@@ -112,36 +125,7 @@ function generateCart(cart) {
   return cart
 }
 
-// testing cart
 
-buy(4)
-buy(4)
-buy(4)
-buy(4)
-buy(4)
-buy(4)
-buy(4)
-buy(4) // 8 items equals
-buy(7)
-buy(7) // 2 items equals
-buy(1)
-buy(1)
-buy(1)
-buy(3)
-buy(3)
-buy(3)
-buy(3)
-buy(3)
-buy(3)
-buy(3)
-buy(3)
-buy(3)
-buy(3)
-
-generateCart(cart)
-
-console.table('cartList', cartList)
-console.table('cart', cart)
 
 // Exercise 5
 function applyPromotionsCart(cart) {
@@ -149,9 +133,9 @@ function applyPromotionsCart(cart) {
   // En aquest exercici has de completar la funció applyPromotionsCart(),
   //  la qual rep el array cart, i calcula les promocions del carret.
   // productos en promodicón ids: 1, 3
-
+  let total = 0
+  let subtotalPromocionOli, subtotalPromocionPastis
   for (let i = 0; i < cart.length; i++) {
-    let subtotalPromocionOli, subtotalPromocionPastis
     // PROMOCIÓN: Si l'usuari compra 3 o més ampolles d'oli, el preu del producte descendeix a 10 euros.
     if (cart[i].id == 1 && cart[i].quantity >= 3) {
       console.log(cart[i].price, cart[i].quantity)
@@ -168,8 +152,6 @@ function applyPromotionsCart(cart) {
       console.log('subtotalPromocionPastis', subtotalPromocionPastis)
       total += subtotalPromocionPastis
     }
-
-
   }
   return total
 }
