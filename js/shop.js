@@ -1,3 +1,4 @@
+const $count_product = document.querySelector('#count_product')
 // If you have time, you can move this variable "products" to a json or js file and load the data in this js. It will look more professional
 const products = [
   {
@@ -68,7 +69,10 @@ function buy(id) {
   // 1. Loop for to the array products to get the item to add to cart
   for (let i = 0; i < products.length; i++) {
     // 2. Add found product to the cartList array
-    if (products[i].id == id) cartList.push(products[i])
+    if (products[i].id == id) {
+      cartList.push(products[i])
+      $count_product.textContent = cartList.length
+    }
   }
   return '👍'
 }
@@ -77,15 +81,17 @@ function buy(id) {
 function cleanCart() {
   cartList.length = 0
   cart.length = 0
-  total =  0
+  total = 0
 
-  console.log(cartList, cart);
+  console.log(cartList, cart)
   return '🧽'
 }
 
 // testing cart
 
-buy(1);buy(1);buy(1);
+buy(1)
+buy(1)
+buy(1)
 
 // generateCart(cart)
 
@@ -101,7 +107,7 @@ function calculateTotal() {
   for (let i = 0; i < cartList.length; i++) {
     total += cartList[i].price
   }
-  console.log('total:', total);
+  console.log('total:', total)
   return '💵'
 }
 
@@ -128,8 +134,6 @@ function generateCart() {
   // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
   return '🛒'
 }
-
-
 
 // Exercise 5
 function applyPromotionsCart() {
@@ -161,7 +165,6 @@ function applyPromotionsCart() {
   return '🤑'
 }
 
-
 // ** Nivell II **
 
 // Exercise 7
@@ -185,3 +188,23 @@ function printCart() {
 function open_modal() {
   console.log('Open Modal')
 }
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
