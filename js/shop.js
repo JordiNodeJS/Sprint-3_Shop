@@ -89,7 +89,6 @@ function cleanCart() {
 
 // testing cart
 
-
 // generateCart(cart)
 
 // calculateTotal(cartList)
@@ -170,30 +169,30 @@ function addToCart(id) {
   // 1. Loop for to the array products to get the item to add to cart
   // 2. Add found product to the cart array or update its quantity in case it has been added previously.
   for (let i = 0; i < products.length; i++) {
-    // buscando el producto en el inventario
-    if (id == products[i].id ) {//compruebo que cart está vacío y creo el producto por primera vez con su quantity a 1
-        if (cart.length == 0 ) {
+    // busco el producto en el inventario
+    if (id == products[i].id) {
+      if (cart.length == 0) {
+        //compruebo que cart está vacío y creo el producto por primera vez con su quantity a 1
+        const productToCart = { ...products[i] }
+        productToCart.quantity = 1
+        cart.push(productToCart)
+      } else if (cart.length >= 0) {
+        // si en cart hay algún producto
+        let exist = false
+        for (let i = 0; i < cart.length; i++) {
+          // miro si existe ese producto y le sumo uno a la quantity
+          if (id == cart[i].id) {
+            exist = true
+            cart[i].quantity += 1
+          }
+        }
+        if (!exist) {
+          // si el producto no está en el cart lo añado por primera vez y con la cantidad de 1
           const productToCart = { ...products[i] }
           productToCart.quantity = 1
           cart.push(productToCart)
-        } else
-         if (cart.length >= 0) // si en cart hay algún producto
-          {
-
-            let exit = false
-              for (let i = 0; i < cart.length; i++) {  // miro si existe ese producto y le sumo uno a la quantity
-                if (id == cart[i].id) {
-                  exit = true
-                  cart[i].quantity += 1
-                }
-              }
-              if (!exit){   // si el producto no está en el cart lo añado por primera vez y con la cantidad de 1
-                  const productToCart = {...products[i]}
-                  productToCart.quantity = 1
-                  cart.push(productToCart)
-              }
-          }
-
+        }
+      }
     }
   }
 }
@@ -214,7 +213,25 @@ console.table('cart', cart)
 function removeFromCart(id) {
   // 1. Loop for to the array products to get the item to add to cart
   // 2. Add found product to the cartList array
+
+  // encuentro el producto que quiero eliminar en la lista de productos
+  for (let i = 0; i < products.length; i++) {
+    if (id == products[i].id && cart.length >= 0) {
+      // una vez encontrado compruebo si está en la cesta
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i].id == id && cart[i].quantity > 0) {
+          cart[i].quantity -= 1
+          if (cart[i].quantity == 0) cart.splice(i, 1)
+        }
+      }
+    }
+  }
 }
+
+// testing removeFromCart
+
+// removeFromCart(1)
+
 
 // Exercise 9
 function printCart() {
@@ -225,41 +242,26 @@ function open_modal() {
   console.log('Open Modal')
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
+;(function () {
   'use strict'
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
   var forms = document.querySelectorAll('.needs-validation')
 
   // Loop over them and prevent submission
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
+  Array.prototype.slice.call(forms).forEach(function (form) {
+    form.addEventListener(
+      'submit',
+      function (event) {
         if (!form.checkValidity()) {
           event.preventDefault()
           event.stopPropagation()
         }
 
         form.classList.add('was-validated')
-      }, false)
-    })
+      },
+      false
+    )
+  })
 })()
