@@ -163,7 +163,11 @@ function applyPromotionsCart() {
 }
 
 // ** Nivell II **
-
+let count_product = 0
+function counterUI (){
+    count_product++
+    $count_product.textContent = count_product
+}
 // Exercise 7
 function addToCart(id) {
 
@@ -178,6 +182,8 @@ function addToCart(id) {
         const productToCart = { ...products[i] }
         productToCart.quantity = 1
         cart.push(productToCart)
+
+        counterUI()
       } else if (cart.length >= 0) {
         // si en cart hay algún producto
         let exist = false
@@ -186,6 +192,8 @@ function addToCart(id) {
           if (id == cart[i].id) {
             exist = true
             cart[i].quantity += 1
+
+            counterUI()
           }
         }
         if (!exist) {
@@ -193,6 +201,8 @@ function addToCart(id) {
           const productToCart = { ...products[i] }
           productToCart.quantity = 1
           cart.push(productToCart)
+
+          counterUI()
         }
       }
     }
