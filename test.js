@@ -71,18 +71,18 @@ const clothes2 = {
 
 
 
-const productToCart = { ...products[0] }
-productToCart.quantity = 1
+// const productToCart = { ...products[0] }
+// productToCart.quantity = 1
 
-cart = [productToCart]
-const arraycloth = [clothes]
+// cart = [productToCart]
+// const arraycloth = [clothes]
 
-cart = [...cart, ...arraycloth]
+// cart = [...cart, ...arraycloth]
 
 // cart.push(productToCart)
 // const cart2 = [clothes2, clothes]
 
-console.log(cart)
+// console.log(cart)
 // cart.length = 0
 // console.log(cart.length)
 
@@ -93,10 +93,15 @@ console.log(cart)
 // const cars2 = [cars, ...otherCar]
 // console.log(cars);
 
-const names = ['Joe', 'John', 'David', 'Smith', 'James']
-console.log(names);
+// const names = ['Joe', 'John', 'David', 'Smith', 'James']
+// console.log(names);
 
-for (let i = 0; i < names.length; i++) {
-  if (names[i] == 'David') names.splice(i, 1)
-}
-console.log(names);
+// for (let i = 0; i < names.length; i++) {
+//   if (names[i] == 'David') names.splice(i, 1)
+// }
+// console.log(names);
+
+const regExpLiteral = /bluweb|bluuweb/gi;
+const str = "bluuweb";
+
+console.log(regExpLiteral.test(str));
