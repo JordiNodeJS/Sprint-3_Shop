@@ -83,7 +83,8 @@ function cleanCart() {
   cartList.length = 0
   cart.length = 0
   total = 0
-
+  count_product = 0
+  $count_product.textContent = count_product
   console.log(cartList, cart)
   return '🧽'
 }
@@ -164,7 +165,7 @@ function applyPromotionsCart() {
 
 // ** Nivell II **
 let count_product = 0
-function counterUI (){
+function counterUI(){
     count_product++
     $count_product.textContent = count_product
 }
