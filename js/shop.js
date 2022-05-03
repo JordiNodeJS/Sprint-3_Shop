@@ -1,7 +1,5 @@
 const $count_product = document.querySelector('#count_product')
 $botoncito = document.querySelector('.btn.btn-outline-dark.flex-center')
-const $closeButton = document.querySelector('.btn-close')
-// $closeButton.addEventListener('click',() => window.location.reload)
 
 
 // If you have time, you can move this variable "products" to a json or js file and load the data in this js. It will look more professional
@@ -89,6 +87,11 @@ function cleanCart() {
   total = 0
   count_product = 0
   $count_product.textContent = count_product
+  const $allQuantitySpan = document.querySelectorAll('.text-warning')
+
+  for (const quantity of $allQuantitySpan) {
+    quantity.textContent = 0
+  }
   console.log(cartList, cart)
   return '🧽'
 }
@@ -192,6 +195,7 @@ function addToCart(id) {
         const productToCart = { ...products[i] }
         productToCart.quantity = 1
         cart.push(productToCart)
+        document.querySelector(`#q${productToCart.id}`).textContent = productToCart.quantity
 
         counterUI()
       } else if (cart.length >= 0) {
@@ -203,6 +207,7 @@ function addToCart(id) {
             exist = true
             cart[i].quantity += 1
 
+            document.querySelector(`#q${cart[i].id}`).textContent = cart[i].quantity
             counterUI()
           }
         }
@@ -211,24 +216,26 @@ function addToCart(id) {
           const productToCart = { ...products[i] }
           productToCart.quantity = 1
           cart.push(productToCart)
+          document.querySelector(`#q${productToCart.id}`).textContent = productToCart.quantity
 
           counterUI()
         }
       }
     }
   }
+
 }
 // testing aadToCart
-addToCart(2)
-addToCart(2)
-addToCart(2)
-addToCart(2)
-addToCart(3)
-addToCart(3)
-addToCart(1)
-addToCart(1)
-addToCart(1)
-addToCart(1)
+// addToCart(2)
+// addToCart(2)
+// addToCart(2)
+// addToCart(2)
+// addToCart(3)
+// addToCart(3)
+// addToCart(1)
+// addToCart(1)
+// addToCart(1)
+// addToCart(1)
 console.table('cart', cart)
 
 // Exercise 8
@@ -243,6 +250,7 @@ function removeFromCart(id) {
       for (let i = 0; i < cart.length; i++) {
         if (cart[i].id == id && cart[i].quantity > 0) {
           cart[i].quantity -= 1
+          document.querySelector(`#q${cart[i].id}`).textContent = cart[i].quantity
           counterUIremove()
           if (cart[i].quantity == 0) cart.splice(i, 1)
         }
@@ -275,10 +283,13 @@ function totalShop() {
 }
 
 // Exercise 9
+const $cartModalh3 = document.querySelector('#cartModal h3')
 $botoncito = document.querySelector('.btn.btn-outline-dark.flex-center')
 $botoncito.addEventListener('click', printCart)
-function printCart(e) {
+
+function printCart() {
   // Fill the shopping cart modal manipulating the shopping cart dom
+  total = 0
   totalShop()
   let trs = ''
   for (let i = 0; i < cart.length; i++) {
@@ -289,9 +300,9 @@ function printCart(e) {
       <td>${cart[i].quantity}</td>
     </tr>`
   }
-  const $cartModalh3 = document.querySelector('#cartModal h3')
-  $div = document.createElement('div')
-  $div.innerHTML += `
+
+  $div = document.getElementById('displayBill')
+  $div.innerHTML = `
     <table  class="table">
     <thead>
     <tr>
@@ -314,11 +325,29 @@ function printCart(e) {
         </tr>
     </tbody></table>
   `
+
   $cartModalh3.insertAdjacentElement('afterend', $div)
-  $cartModalh3.remove()
-  $botoncito.removeEventListener(e.type, printCart)
+  $cartModalh3.style.display = 'none'
+  // $botoncito.removeEventListener(e.type, printCart)
 }
+
+const $closeButton = document.querySelector('.btn-close')
+$closeButton.addEventListener('click',() => {
+  $cartModalh3.style.display = 'block'
+  // document.querySelector('#tableProducts').remove()
+  // console.log(document.querySelector('#tableProducts'))
+
+})
+
 
 function open_modal() {
   console.log('Open Modal')
+}
+
+function printQuantity() {
+  const $quantity = document.querySelector('#q1')
+  const filterCart = cart.filter(e => e.id == 1)
+ console.log(filterCart);
+
+  // $quantity.textContent = filterCart[0].quantity
 }

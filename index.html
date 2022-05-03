@@ -36,7 +36,7 @@
       <div class="d-flex flex-row order-lg-last align-items-center">
         <button type="button" class="navbar-toggler order-last collapsed" data-bs-toggle="collapse"
           data-bs-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon">0</span>
         </button>
         <ul class="navbar-nav me-3 me-lg-0 d-flex flex-row align-items-center">
           <li class="dropdown search-dropdown nav-item py-lg-3">
@@ -93,7 +93,7 @@
             <div class="card-body p-4">
               <div class="text-center">
                 <h5 class="fw-bolder">Cooking Oil</h5>
-                $10.5
+                $10.5 - Quantity: <span class="text-warning" id="q1">0</span>
               </div>
             </div>
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -115,7 +115,7 @@
             <div class="card-body p-4">
               <div class="text-center">
                 <h5 class="fw-bolder">Pasta</h5>
-                $6.25
+                $6.25 - Quantity: <span class="text-warning" id="q2">0</span>
               </div>
             </div>
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -136,7 +136,7 @@
             <div class="card-body p-4">
               <div class="text-center">
                 <h5 class="fw-bolder">Instant cupcake mixture</h5>
-                $5
+                $5  - Quantity: <span class="text-warning" id="q3">0</span>
               </div>
             </div>
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -165,7 +165,7 @@
             <div class="card-body p-4">
               <div class="text-center">
                 <h5 class="fw-bolder">All-in-1</h5>
-                $260
+                $260 - Quantity: <span class="text-warning" id="q4">0</span>
               </div>
             </div>
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -186,7 +186,7 @@
             <div class="card-body p-4">
               <div class="text-center">
                 <h5 class="fw-bolder">Zero makeup kit</h5>
-                $20.5
+                $20.5 - Quantity: <span class="text-warning" id="q5">0</span>
               </div>
             </div>
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -207,7 +207,7 @@
             <div class="card-body p-4">
               <div class="text-center">
                 <h5 class="fw-bolder">Lip tints</h5>
-                $12.75
+                $12.75 - Quantity: <span class="text-warning" id="q6">0</span>
               </div>
             </div>
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -236,7 +236,7 @@
             <div class="card-body p-4">
               <div class="text-center">
                 <h5 class="fw-bolder">Lawn dress</h5>
-                $15
+                $15 - Quantity: <span class="text-warning" id="q7">0</span>
               </div>
             </div>
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -257,7 +257,7 @@
             <div class="card-body p-4">
               <div class="text-center">
                 <h5 class="fw-bolder">Lawn-chiffon combo</h5>
-                $19.99
+                $19.99 - Quantity: <span class="text-warning" id="q8">0</span>
               </div>
             </div>
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -278,7 +278,7 @@
             <div class="card-body p-4">
               <div class="text-center">
                 <h5 class="fw-bolder">Toddler Frock</h5>
-                $9.99
+                $9.99 - Quantity: <span class="text-warning" id="q9">0</span>
               </div>
             </div>
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -322,6 +322,7 @@
             <div>
               <h3 class="text-center bill px-5">Select Something</h3>
             </div>
+            <div id="displayBill"></div>
             <div class="text-center">
               <a href="checkout.html" class="btn btn-primary m-3">Checkout</a>
             </div>
