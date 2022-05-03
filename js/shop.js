@@ -1,5 +1,9 @@
 const $count_product = document.querySelector('#count_product')
 $botoncito = document.querySelector('.btn.btn-outline-dark.flex-center')
+const $closeButton = document.querySelector('.btn-close')
+// $closeButton.addEventListener('click',() => window.location.reload)
+
+
 // If you have time, you can move this variable "products" to a json or js file and load the data in this js. It will look more professional
 const products = [
   {
@@ -165,9 +169,14 @@ function applyPromotionsCart() {
 
 // ** Nivell II **
 let count_product = 0
+
 function counterUI(){
     count_product++
     $count_product.textContent = count_product
+}
+function counterUIremove(){
+  count_product--
+  $count_product.textContent = count_product
 }
 // Exercise 7
 function addToCart(id) {
@@ -234,6 +243,7 @@ function removeFromCart(id) {
       for (let i = 0; i < cart.length; i++) {
         if (cart[i].id == id && cart[i].quantity > 0) {
           cart[i].quantity -= 1
+          counterUIremove()
           if (cart[i].quantity == 0) cart.splice(i, 1)
         }
       }
